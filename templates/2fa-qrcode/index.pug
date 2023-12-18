@@ -1,0 +1,18 @@
+extends ../layout.pug
+block content
+    .container
+        h1 Profil
+        p Bonjour #{username}, nous venons d'activer la double authentification sur votre compte !
+        br
+        div Scanner ce QR code avec un outil OTP comme Google Authenticator
+        img(src=qr)
+        br
+        div ou saisir Manuellement les informations suivantes 
+        br
+        b Nom du compte : 
+        span #{account}
+        br
+        b Votre clé  : 
+        span #{key}
+        br
+        b Type de clé : Basé sur l'heure (OTP - One Time Password) 
