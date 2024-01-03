@@ -1,0 +1,42 @@
+version: "3.9"
+services:
+  # webflix:
+  #   build: 
+  #     context: ./nodejs
+  #   ports:
+  #     - "8080:80"
+  #   environment:
+  #     SQL_HOST: mysql
+  #     SQL_USER: user
+  #     SQL_PASSWORD: ""
+  #     SQL_PORT: 3306
+  #     SQL_DBNAME: webflix
+  #   depends_on:
+  #     - mysql
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: webflix
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql
+
+      
+
+volumes:
+  mysql_data:
